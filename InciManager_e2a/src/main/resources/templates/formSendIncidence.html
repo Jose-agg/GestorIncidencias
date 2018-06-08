@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyC8NaOdLLGoUMued8G5Yux5pmgHVZRs8Fk"></script>
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2>Enviar Incidencia</h2>
+		<form class="form-horizontal" method="post"
+			action="/formSendIncidence" th:object="${incidenciaMin}">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Nombre
+					de la incidencia:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="nombre"
+						placeholder="Fuego en el Parque San Francisco" required="true" />
+					<span class="text-danger" th:if="${#fields.hasErrors('nombre')}"
+						th:errors="*{nombre}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Descripcion:</label>
+				<div class="col-sm-10">
+					<textarea rows="10" cols="40" class="form-control"
+						name="descripcion"
+						placeholder="Escriba aqui una descripcion detallada de la incidencia ..."></textarea>
+					<span class="text-danger"
+						th:if="${#fields.hasErrors('descripcion')}"
+						th:errors="*{descripcion}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Etiquetas:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="etiqueta"
+						placeholder="Fuego, Parque, Oviedo ..." /> <span
+						class="text-danger" th:if="${#fields.hasErrors('etiqueta')}"
+						th:errors="*{etiqueta}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Campos:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="campo"
+						placeholder="Temperatura: 20ºC, Viento:54 km/h ..." /> <span
+						class="text-danger" th:if="${#fields.hasErrors('campo')}"
+						th:errors="*{campo}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Latitud:
+					(No recomendado cambiarlo)</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="latitud"
+						placeholder="47.2141" id="latitud" step="0.0000001" /> <span class="text-danger"
+						th:if="${#fields.hasErrors('latitud')}" th:errors="*{latitud}"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="description">Longitud:
+					(No recomendado cambiarlo)</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" name="longitud"
+						placeholder="-38.9826" id="longitud" step="0.0000001"/> <span class="text-danger"
+						th:if="${#fields.hasErrors('longitud')}" th:errors="*{longitud}"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Enviar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		function initGeolocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(success);
+			} else {
+				alert("Sorry, your browser does not support geolocation services.");
+			}
+		}
+
+		function success(position) {
+			document.getElementById('latitud').value = position.coords.latitude;
+			document.getElementById('longitud').value = position.coords.longitude;
+		}
+		initGeolocation();
+	</script>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

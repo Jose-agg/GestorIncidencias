@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+
+<body>
+
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+
+
+	<div class="container">
+		<h2>Gestionar incidencia</h2>
+		<form class="form-horizontal" method="post"
+			th:action="${'/incidencias/edit/' + incidencia.id}">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="comentarioOperario">Comentario:</label>
+				<div class="col-sm-10">
+					<textarea th:value="${incidencia.comentarioOperario}" type="text"
+						class="form-control" name="comentarioOperario" rows="4"
+						placeholder="Escribe un comentario sobre la incidencia"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="estado">Estado:</label>
+				<div class="col-sm-10">
+					<select id="estado" class="form-control" name="estado">
+						<option th:each="estado : ${estadoList}" th:value="${estado}"
+							th:text="${estado}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Confirmar cambios</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+		<div class="container">
+		<h2>Detalles de la incidencia</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Nombre</div>
+			<div class="panel-body" th:text="${incidencia.nombre}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Agente</div>
+			<div class="panel-body" th:text="${incidencia.agent.nombre}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Descripcion</div>
+			<div class="panel-body" th:text="${incidencia.descripcion}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Localizacion</div>
+			<div class="panel-body" th:text="${incidencia.localizacion}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Estado</div>
+			<div class="panel-body" th:text="${incidencia.estado}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Comentario operario</div>
+			<div class="panel-body" th:text="${incidencia.comentarioOperario}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Campos</div>
+			<div class="panel-body" th:text="${incidencia.toStringCampos()}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Etiquetas</div>
+			<div class="panel-body" th:text="${incidencia.toStringEtiquetas()}"></div>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer" />
+
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+
+<body>
+
+	<!-- Barra de Navegaci�n superior -->
+	<nav th:replace="fragments/nav" />
+
+
+	<div class="container">
+		<h2>Modificar valores campos críticos</h2>
+		<form class="form-horizontal" method="post"
+			th:action="${'/campos/modificar/' + campo.id}">
+			
+			
+			<div class="panel panel-default">
+			<div class="panel-heading">Nombre del campo:</div>
+			<div class="panel-body" th:text="${campo.clave}"></div>
+			</div>
+		
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="valor">Valor del campo:</label>
+				<div class="col-sm-10">
+					<textarea th:value="${campo.valor}" type="text"
+						class="form-control" name="valor" rows="4"
+						th:placeholder="${campo.valor}"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">Confirmar cambio</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<footer th:replace="fragments/footer" />
+	
+</body>
+</html>

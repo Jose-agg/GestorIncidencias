@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<nav th:replace="fragments/nav" />
+
+	<div class="container" style="text-align: center">
+		<h2>Estadisticas</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Operador con mas incidencias
+				asignadas (historicas)</div>
+			<div class="panel-body"
+				th:text="${operadorConMasIncidenciasHistoricas.user}"></div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Etiqueta mas usada</div>
+			<div class="panel-body"
+				th:text="${etiquetaMasUsada}"></div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script th:inline="javascript" type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+     
+     
+      function drawStuff() {
+    	var abiertas = [[${numeroTotalIncidenciasAbiertas}]];
+    	var anuladas = [[${numeroTotalIncidenciasAnuladas}]];
+    	var cerradas = [[${numeroTotalIncidenciasCerradas}]];
+    	var enproceso = [[${numeroTotalIncidenciasEnProceso}]];
+        var data = new google.visualization.arrayToDataTable([
+          ['Estado', 'Numero'],
+          ["Incidencias abiertas", abiertas],
+          ["Incidencias anuladas", anuladas],
+          ["Incidencias cerradas", cerradas],
+          ["Incidencias en proceso", enproceso]
+        ]);
+
+        var options = {
+          title: 'Estado de las incidencias',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Estado de las incidencias',
+                    },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Numero'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+
+
+	<div id="top_x_div" style="width: 900px; height: 500px;"></div>
+
+	<footer th:replace="fragments/footer" />
+
+</body>
+</html>
+
+
+
+

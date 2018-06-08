@@ -1,0 +1,43 @@
+<html>
+<head th:replace="fragments/head" />
+<body>
+	<div class="bg-primary">
+		<center>
+			<h2>Tu informacion:</h2>
+		</center>
+	</div>
+	<table>
+		<tr>
+			<td>Nombre:</td>
+			<td><span th:text="${session.agent.nombre}" /></td>
+		</tr>
+		<tr>
+			<td>Apellidos:</td>
+			<td><span th:text="${session.agent.apellidos}" /></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><span th:text="${session.agent.email}" /></td>
+		</tr>
+		<tr>
+			<td>DNI:</td>
+			<td><span th:text="${session.agent.dni}" /></td>
+		</tr>
+		<tr>
+			<td>Kind:</td>
+			<td><span th:text="${session.agent.kind}" /></td>
+		</tr>
+		<tr>
+			<td>KindCode:</td>
+			<td><span th:text="${session.agent.kindCode}" /></td>
+		</tr>
+		</br>
+		<tr>
+			<td><a href="changeInfo">Modificar datos</a></td>
+			<td></td>
+			<td><a href="/logout">Cerrar sesion</a></td>
+		</tr>
+	</table>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+
+	<!-- Barra de Navegación superior -->
+	<nav th:replace="fragments/nav" />
+
+
+
+	<div class="container">
+		<h2>Detalles de la Incidencia</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">Nombre de la Incidecia</div>
+			<div class="panel-body" th:text="${incidence.nombre}">28276</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Descripción de la Incidencia</div>
+			<div class="panel-body" th:text="${incidence.descripcion}">100</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Fecha de la Incidencia</div>
+			<div class="panel-body" th:text="${incidence.fecha}">100</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Estado de la Incidencia</div>
+			<div class="panel-body" th:text="${incidence.estado}">100</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Coordenadas de la Incidencia</div>
+			<div class="panel-body" th:text="${incidence.location.latitud}">100</div>
+			<div class="panel-body" th:text="${incidence.location.longitud}">100</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Entidad asignada</div>
+			<div class="panel-body" th:text="${incidence.entidadAsignada}">100</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Comentario del operario</div>
+			<div class="panel-body" th:text="${incidence.comentarioOperario}">100</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer" />
+
+</body>
+</html>

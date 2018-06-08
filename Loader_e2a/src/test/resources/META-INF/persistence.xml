@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+      version="2.0"
+      xmlns="http://java.sun.com/xml/ns/persistence">
+
+    <persistence-unit name="test">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>es.uniovi.asw.model.Agent</class>
+        <class>es.uniovi.asw.model.Location</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://52.47.175.34:3306/Test_Loader?useSSL=false" />
+            <property name="javax.persistence.jdbc.user" value="User_E2A" />
+            <property name="javax.persistence.jdbc.password" value="EII_ASW_2018" />
+		
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+			<property name="eclipselink.logging.level" value="ALL"/>
+
+		</properties>
+	</persistence-unit>
+
+</persistence>
